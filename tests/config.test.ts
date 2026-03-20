@@ -4,6 +4,7 @@ import path from "node:path";
 import assert from "node:assert/strict";
 import { loadConfig } from "../src/config.js";
 import { AppError } from "../src/errors.js";
+import { resolveDefaultArtifactRoot, resolveRuntimeHome } from "../src/utils/runtimePaths.js";
 
 export async function runConfigTests(): Promise<void> {
   const tempDirs: string[] = [];
@@ -25,7 +26,8 @@ export async function runConfigTests(): Promise<void> {
         cwd,
       );
 
-      assert.equal(config.paths.artifactRoot, path.join(cwd, "artifacts/generated-images/chatgpt"));
+      assert.equal(config.paths.runtimeHome, resolveRuntimeHome(process.env, cwd));
+      assert.equal(config.paths.artifactRoot, resolveDefaultArtifactRoot(config.paths.runtimeHome));
       assert.equal(config.timeouts.defaultTimeoutMs, 240000);
       assert.equal(config.browser.headless, true);
       assert.equal(config.browserLaunch.automationProfilePath, path.join(cwd, "Profile 16"));
@@ -43,6 +45,8 @@ export async function runConfigTests(): Promise<void> {
       const config = loadConfig({}, cwd);
 
       assert.equal(config.browser.headless, false);
+      assert.equal(config.paths.runtimeHome, resolveRuntimeHome(process.env, cwd));
+      assert.equal(config.paths.artifactRoot, resolveDefaultArtifactRoot(config.paths.runtimeHome));
       assert.deepEqual(config.browserLaunch, {
         automationProfilePath: undefined,
         cloneAutomationProfile: true,
@@ -67,6 +71,22 @@ export async function runConfigTests(): Promise<void> {
 
       assert.equal(config.browserLaunch.cloneAutomationProfile, false);
       assert.equal(config.extensionBridge.port, 49000);
+    }
+
+    {
+      const cwd = await createTempDir();
+      const config = loadConfig(
+        {
+          CHATGPT_RUNTIME_HOME: ".chatgpt-image-mcp-runtime",
+        },
+        cwd,
+      );
+
+      assert.equal(config.paths.runtimeHome, path.join(cwd, ".chatgpt-image-mcp-runtime"));
+      assert.equal(
+        config.paths.artifactRoot,
+        path.join(cwd, ".chatgpt-image-mcp-runtime", "artifacts", "generated-images", "chatgpt"),
+      );
     }
 
     {

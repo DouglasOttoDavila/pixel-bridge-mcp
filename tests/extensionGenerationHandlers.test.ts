@@ -16,6 +16,7 @@ function createConfig(): AppConfig {
     returnMode: "paths",
     paths: {
       cwd: "D:/GitHub/image-generation-mcp-server",
+      runtimeHome: "D:/Users/doug/AppData/Local/chatgpt-browser-image-generation-mcp-server",
       artifactRoot: "D:/GitHub/image-generation-mcp-server/artifacts/generated-images/chatgpt",
     },
     retry: { attempts: 3, baseDelayMs: 1000 },

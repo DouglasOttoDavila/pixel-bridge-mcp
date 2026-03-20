@@ -46,6 +46,19 @@ export async function runDotEnvTests(): Promise<void> {
 
       assert.equal(env.CHATGPT_BROWSER_HEADLESS, "true");
     }
+
+    {
+      const cwd = await createTempDir();
+      const runtimeHome = await createTempDir();
+      await writeFile(path.join(runtimeHome, ".env"), 'CHATGPT_EXTENSION_BRIDGE_PORT="47899"\n');
+      await writeFile(path.join(cwd, ".env"), 'CHATGPT_BROWSER_HEADLESS="false"\n');
+
+      const env: NodeJS.ProcessEnv = {};
+      loadDotEnv([cwd, runtimeHome], env);
+
+      assert.equal(env.CHATGPT_BROWSER_HEADLESS, "false");
+      assert.equal(env.CHATGPT_EXTENSION_BRIDGE_PORT, "47899");
+    }
   } finally {
     for (const dir of tempDirs) {
       await rm(dir, { recursive: true, force: true });

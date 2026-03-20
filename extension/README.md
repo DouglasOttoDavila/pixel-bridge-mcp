@@ -20,12 +20,18 @@ npm run build:extension
 
 The manifest references files under `extension/dist/`, so build the extension before loading it.
 
+For release prep, also see:
+
+- [Chrome Web Store Submission](../docs/chrome-web-store-submission.md)
+- [Privacy Policy Draft](../docs/privacy-policy.md)
+
 ## Current MVP Behavior
 
-- connects to `http://127.0.0.1:47821/handshake`
+- connects to the configured localhost handshake endpoint
 - keeps a background bridge connection alive from the extension service worker
 - registers open ChatGPT tabs with the local bridge
 - can open a new `chatgpt.com` tab in the background when the server needs a fallback tab
+- exposes a popup with bridge diagnostics and a settings page for bridge host/port
 - responds to `validate_session`
 - supports `generate_image` by optionally clicking `New chat`, submitting the prompt, waiting for new images, and returning base64 payloads to the MCP server
 

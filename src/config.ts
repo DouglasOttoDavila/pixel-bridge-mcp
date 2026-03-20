@@ -1,6 +1,7 @@
 import path from "node:path";
 import { AppError } from "./errors.js";
 import type { AppConfig, ReturnMode } from "./types.js";
+import { resolveDefaultArtifactRoot, resolveRuntimeHome } from "./utils/runtimePaths.js";
 
 function parseInteger(value: string | undefined, fallback: number, label: string): number {
   if (!value) {
@@ -55,14 +56,16 @@ export function loadConfig(
     );
   }
 
+  const runtimeHome = resolveRuntimeHome(env, cwd);
   const artifactRoot = resolvePath(cwd, env.CHATGPT_ARTIFACT_ROOT) ??
-    path.resolve(cwd, "artifacts/generated-images/chatgpt");
+    resolveDefaultArtifactRoot(runtimeHome);
 
   return {
     chatGptBaseUrl: env.CHATGPT_BASE_URL?.trim() || "https://chatgpt.com",
     returnMode: parseReturnMode(env.CHATGPT_RETURN_MODE),
     paths: {
       cwd,
+      runtimeHome,
       artifactRoot,
     },
     retry: {

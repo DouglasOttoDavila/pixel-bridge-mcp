@@ -1,14 +1,18 @@
+#!/usr/bin/env node
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { loadConfig } from "./config.js";
 import { createServer } from "./server.js";
 import { loadDotEnv } from "./utils/dotenv.js";
 import { loadOrCreateBridgeToken } from "./extensionBridge/token.js";
 import { ExtensionBridgeServer } from "./extensionBridge/server.js";
+import { resolveRuntimeHome } from "./utils/runtimePaths.js";
 
 async function main(): Promise<void> {
-  loadDotEnv();
+  const cwd = process.cwd();
+  const runtimeHome = resolveRuntimeHome(process.env, cwd);
+  loadDotEnv([cwd, runtimeHome]);
   const config = loadConfig();
-  const bridgeToken = await loadOrCreateBridgeToken(config.paths.cwd);
+  const bridgeToken = await loadOrCreateBridgeToken(config.paths.runtimeHome);
   const extensionBridge = new ExtensionBridgeServer(config, bridgeToken);
   await extensionBridge.start();
   const server = createServer(config, extensionBridge);

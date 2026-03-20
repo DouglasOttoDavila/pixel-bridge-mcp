@@ -2,6 +2,33 @@
 
 Local TypeScript MCP server that orchestrates ChatGPT image generation from the user's real browser tab through a Chrome extension bridge, persists artifacts under `artifacts/generated-images/chatgpt/`, and returns MCP-friendly structured results.
 
+License: `MIT`. See [LICENSE](./LICENSE).
+
+For productization, the intended install target is now a local npm-installed CLI. The executable name is `chatgpt-image-mcp`.
+
+End-user installation docs:
+- [Installing The CLI](./docs/installing-the-cli.md)
+- [MCP Client Configuration](./docs/mcp-client-configuration.md)
+- [Release Checklist](./docs/release-checklist.md)
+- [GitHub Release Checklist](./docs/github-release-checklist.md)
+- [Support](./docs/support.md)
+- [Chrome Web Store Submission](./docs/chrome-web-store-submission.md)
+- [Privacy Policy Draft](./docs/privacy-policy.md)
+
+## Public Links
+
+Current public project/support URL:
+
+- Project home: `https://github.com/DouglasOttoDavila/image-generation-mcp-server`
+- Issue tracker: `https://github.com/DouglasOttoDavila/image-generation-mcp-server/issues`
+- Support page: `https://github.com/DouglasOttoDavila/image-generation-mcp-server/blob/main/docs/support.md`
+
+Current public privacy-policy draft URL:
+
+- `https://github.com/DouglasOttoDavila/image-generation-mcp-server/blob/main/docs/privacy-policy.md`
+
+If you later publish GitHub Pages for this repo, replace the privacy-policy URL above with the final Pages URL and reuse the same link in the Chrome Web Store listing.
+
 ## What It Does
 
 - Exposes MCP tools for active-tab image generation, fresh-chat image generation, existing-GPT image generation, browser-session validation, and tab diagnostics.
@@ -20,6 +47,8 @@ Current migration state:
 
 ## Setup
 
+This section is the developer/source-repo setup path. If you are installing the packaged CLI, use [Installing The CLI](./docs/installing-the-cli.md) instead.
+
 1. Install dependencies:
 ```bash
 npm install
@@ -33,8 +62,11 @@ $env:CHATGPT_EXTENSION_BRIDGE_PORT="47821"
 
 You can also place the same values in a local `.env` file. The server auto-loads `.env` on startup and accepts either standard dotenv lines or PowerShell-style `$env:` lines.
 
+A safe starter file is included at [.env.example](./.env.example).
+
 Optional variables:
 
+- `CHATGPT_RUNTIME_HOME`
 - `CHATGPT_EXTENSION_BRIDGE_PORT`
 - `CHATGPT_EXTENSION_BRIDGE_HOST`
 - `CHATGPT_ARTIFACT_ROOT`
@@ -43,6 +75,41 @@ Optional variables:
 - `CHATGPT_MAX_TIMEOUT_MS`
 - `CHATGPT_RETRY_ATTEMPTS`
 - `CHATGPT_RETRY_BASE_DELAY_MS`
+
+## Runtime Home
+
+When `CHATGPT_RUNTIME_HOME` is not set, the server now defaults to an OS app-data directory instead of the repo folder:
+
+- Windows: `%LOCALAPPDATA%\\chatgpt-browser-image-generation-mcp-server`
+- macOS: `~/Library/Application Support/chatgpt-browser-image-generation-mcp-server`
+- Linux: `${XDG_DATA_HOME:-~/.local/share}/chatgpt-browser-image-generation-mcp-server`
+
+Default artifact output is created under:
+
+```text
+<runtime-home>/artifacts/generated-images/chatgpt/
+```
+
+The local bridge token and managed browser profile data also live under the runtime home.
+
+## Packaging Notes
+
+The npm package is intended to ship runtime artifacts only:
+
+- `dist/src/*`
+- extension runtime files under `extension/dist/`
+- `extension/manifest.json`
+- `extension/popup.html`
+- `extension/options.html`
+- runtime README files
+
+It should not ship compiled tests or raw extension TypeScript source files.
+
+Current extension distribution model:
+
+- downloadable/manual install first
+- load the bundled `extension/` directory as an unpacked extension
+- Chrome Web Store submission is documented but not the default distribution path yet
 
 ## Extension Bridge
 
@@ -58,7 +125,7 @@ Then load `extension/` as an unpacked extension in Chrome. The extension uses th
 http://127.0.0.1:47821/handshake
 ```
 
-See [extension/README.md](/D:/GitHub/image-generation-mcp-server/extension/README.md) for the current MVP behavior.
+See [extension/README.md](./extension/README.md) for the current MVP behavior.
 
 ## First Login
 
@@ -70,6 +137,14 @@ Open `https://chatgpt.com` in your normal Chrome profile, log in once, and keep 
 npm run build
 npm run start
 ```
+
+For an installed CLI, run:
+
+```bash
+chatgpt-image-mcp
+```
+
+For generic MCP client wiring examples, see [MCP Client Configuration](./docs/mcp-client-configuration.md).
 
 For local development:
 
@@ -92,7 +167,7 @@ npm run dev
 Successful runs save files under:
 
 ```text
-artifacts/generated-images/chatgpt/YYYY-MM-DD/
+<runtime-home>/artifacts/generated-images/chatgpt/YYYY-MM-DD/
 ```
 
 Each run writes:

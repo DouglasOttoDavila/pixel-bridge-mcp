@@ -4,12 +4,16 @@
   "version": "0.1.0",
   "description": "Bridges the local MCP server to an already-open ChatGPT tab.",
   "minimum_chrome_version": "116",
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
   "host_permissions": [
     "https://chatgpt.com/*",
     "http://127.0.0.1/*",
     "http://localhost/*"
   ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
   "background": {
     "service_worker": "dist/background.js",
     "type": "module"

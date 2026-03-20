@@ -10,6 +10,8 @@ dist/
 .tmp-test.js
 coverage/
 *.log
+*.tgz
+*.crx
 .DS_Store
 .env
 .env.*
@@ -20,3 +22,4 @@ artifacts/generated-images/chatgpt/
 /_bmad
 /.tmp-vibium-repo
 /.vscode
+/.runtime-home

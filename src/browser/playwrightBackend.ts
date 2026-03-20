@@ -691,7 +691,7 @@ export class PlaywrightBrowserBackend implements BrowserBackend {
       );
     }
 
-    const userDataDir = path.join(this.config.paths.cwd, ".mcp-chatgpt-chrome", "managed");
+    const userDataDir = path.join(this.config.paths.runtimeHome, ".mcp-chatgpt-chrome", "managed");
     await mkdir(userDataDir, { recursive: true });
     return { userDataDir };
   }

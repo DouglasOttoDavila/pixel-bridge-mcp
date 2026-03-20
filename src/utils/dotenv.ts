@@ -32,21 +32,28 @@ function parseLine(line: string): { key: string; value: string } | undefined {
   return { key, value };
 }
 
-export function loadDotEnv(cwd = process.cwd(), env: NodeJS.ProcessEnv = process.env): void {
-  const envPath = path.join(cwd, ".env");
-  if (!existsSync(envPath)) {
-    return;
-  }
+export function loadDotEnv(
+  cwdOrDirectories: string | string[] = process.cwd(),
+  env: NodeJS.ProcessEnv = process.env,
+): void {
+  const directories = Array.isArray(cwdOrDirectories) ? cwdOrDirectories : [cwdOrDirectories];
 
-  const lines = readFileSync(envPath, "utf8").split(/\r?\n/);
-  for (const line of lines) {
-    const parsed = parseLine(line);
-    if (!parsed) {
+  for (const cwd of directories) {
+    const envPath = path.join(cwd, ".env");
+    if (!existsSync(envPath)) {
       continue;
     }
 
-    if (env[parsed.key] === undefined) {
-      env[parsed.key] = parsed.value;
+    const lines = readFileSync(envPath, "utf8").split(/\r?\n/);
+    for (const line of lines) {
+      const parsed = parseLine(line);
+      if (!parsed) {
+        continue;
+      }
+
+      if (env[parsed.key] === undefined) {
+        env[parsed.key] = parsed.value;
+      }
     }
   }
 }

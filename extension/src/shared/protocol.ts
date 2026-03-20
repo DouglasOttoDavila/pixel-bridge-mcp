@@ -7,6 +7,8 @@ export interface HandshakePayload {
   protocolVersion: number;
   wsUrl: string;
   token: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
 }
 
 export interface PageContextPayload {
@@ -24,6 +26,14 @@ export interface ServerCommand {
   commandId: string;
   action: "validate_session" | "generate_image" | "open_chatgpt_tab";
   payload: Record<string, unknown>;
+}
+
+export interface HelloAckMessage {
+  type: "hello_ack";
+  sessionId: string;
+  tabKey: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
 }
 
 export interface GenerateImageCommandPayload {
@@ -54,4 +64,12 @@ export interface ResultMessage {
     message: string;
     details?: unknown;
   };
+}
+
+export function areVersionsCompatible(expected: string | undefined, actual: string | undefined): boolean {
+  if (!expected || !actual) {
+    return true;
+  }
+
+  return expected.trim() === actual.trim();
 }

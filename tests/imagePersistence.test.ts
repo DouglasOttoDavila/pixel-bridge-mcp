@@ -11,6 +11,7 @@ function createConfig(root: string): AppConfig {
     returnMode: "paths",
     paths: {
       cwd: root,
+      runtimeHome: path.join(root, "runtime-home"),
       artifactRoot: path.join(root, "artifacts"),
     },
     retry: { attempts: 3, baseDelayMs: 50 },

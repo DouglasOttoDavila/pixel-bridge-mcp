@@ -84,12 +84,16 @@ export interface HelloAckMessage {
   type: "hello_ack";
   sessionId: string;
   tabKey: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
 }
 
 export interface HandshakePayload {
   protocolVersion: number;
   wsUrl: string;
   token: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
 }
 
 export function buildValidateSessionCommand(commandId: string): CommandMessage<Record<string, never>> {

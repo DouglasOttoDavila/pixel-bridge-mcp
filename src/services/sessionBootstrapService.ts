@@ -9,12 +9,12 @@ export class SessionBootstrapService {
           "Set CHATGPT_CHROME_PROFILE_DIRECTORY only when CHATGPT_AUTOMATION_PROFILE_PATH points to the user-data root.",
           "Set CHATGPT_CHROME_EXECUTABLE_PATH if Chrome is not in the default install location.",
           config.browserLaunch.cloneAutomationProfile
-            ? "Run validate_browser_session() to launch a cloned automation profile under .mcp-chatgpt-chrome/."
+            ? `Run validate_browser_session() to launch a cloned automation profile under ${config.paths.runtimeHome}/.mcp-chatgpt-chrome/.`
             : "Close all Chrome windows using that profile before running validate_browser_session() with the live profile.",
         ]
       : [
           "Optionally set CHATGPT_AUTOMATION_PROFILE_PATH to reuse an existing logged-in Chrome profile.",
-          "If no profile path is set, validate_browser_session() will open a dedicated automation profile under .mcp-chatgpt-chrome/managed/.",
+          `If no profile path is set, validate_browser_session() will open a dedicated automation profile under ${config.paths.runtimeHome}/.mcp-chatgpt-chrome/managed/.`,
           "Set CHATGPT_CHROME_EXECUTABLE_PATH if Chrome is not in the default install location.",
           "Run validate_browser_session() and sign into ChatGPT in the opened browser window if needed.",
         ];

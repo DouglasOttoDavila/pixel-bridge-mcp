@@ -1,16 +1,47 @@
 {
   "name": "chatgpt-browser-image-generation-mcp-server",
   "version": "0.1.0",
-  "private": true,
   "description": "Local MCP server for ChatGPT browser-based image generation workflows.",
+  "license": "MIT",
+  "author": "Douglas Otto Davila",
+  "homepage": "https://github.com/DouglasOttoDavila/image-generation-mcp-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DouglasOttoDavila/image-generation-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DouglasOttoDavila/image-generation-mcp-server/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "chatgpt",
+    "chrome-extension",
+    "image-generation",
+    "browser-automation"
+  ],
   "type": "module",
+  "bin": {
+    "chatgpt-image-mcp": "dist/src/index.js"
+  },
+  "files": [
+    "dist/src",
+    "docs",
+    "extension/dist",
+    "extension/manifest.json",
+    "extension/popup.html",
+    "extension/options.html",
+    "extension/README.md",
+    "README.md",
+    ".env.example"
+  ],
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "engines": {
     "node": ">=20.18.0"
   },
   "scripts": {
-    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && node ./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && node ./node_modules/typescript/bin/tsc -p tsconfig.build.json",
     "build:extension": "node ./node_modules/typescript/bin/tsc -p extension/tsconfig.json",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/src/index.js",

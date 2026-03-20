@@ -1,3 +1,6 @@
+import { areVersionsCompatible, type HandshakePayload, type HelloAckMessage } from "../shared/protocol.js";
+import { buildHandshakeUrl, readBridgeSettings } from "../shared/settings.js";
+
 const CONTEXT_PUSH_INTERVAL_MS = 10000;
 const COMMAND_RETRY_DELAY_MS = 3000;
 const GENERATION_POLL_INTERVAL_MS = 2000;
@@ -31,12 +34,6 @@ const GPT_HEADER_SELECTORS = [
 ];
 
 type PageType = "chat" | "gpt" | "login" | "challenge" | "unknown";
-
-interface HandshakePayload {
-  protocolVersion: number;
-  wsUrl: string;
-  token: string;
-}
 
 interface PageContextPayload {
   tabUrl: string;
@@ -98,13 +95,19 @@ let socket: WebSocket | undefined;
 void connect();
 
 async function connect(): Promise<void> {
-  const enabled = await readBridgeEnabled();
-  if (!enabled) {
+  const settings = await readBridgeSettings();
+  if (!settings.bridgeEnabled) {
     return;
   }
 
   try {
-    const handshake = await fetchHandshake();
+    const handshake = await fetchHandshake(settings);
+    if (!areVersionsCompatible(handshake.expectedExtensionVersion, chrome.runtime.getManifest().version)) {
+      throw new Error(
+        `Server expects extension ${handshake.expectedExtensionVersion} but installed version is ${chrome.runtime.getManifest().version}.`,
+      );
+    }
+
     socket = new WebSocket(handshake.wsUrl);
     socket.addEventListener("open", () => {
       const hello = {
@@ -143,7 +146,14 @@ async function connect(): Promise<void> {
 }
 
 async function handleMessage(raw: string): Promise<void> {
-  const message = JSON.parse(raw) as ServerCommand;
+  const message = JSON.parse(raw) as ServerCommand | HelloAckMessage;
+  if (message.type === "hello_ack") {
+    if (!areVersionsCompatible(message.expectedExtensionVersion, chrome.runtime.getManifest().version)) {
+      socket?.close(4003, "Extension version mismatch");
+    }
+    return;
+  }
+
   if (message.type !== "command") {
     return;
   }
@@ -745,21 +755,15 @@ function respond(message: ResultMessage): void {
   }
 }
 
-async function fetchHandshake(): Promise<HandshakePayload> {
-  const response = await fetch("http://127.0.0.1:47821/handshake");
+async function fetchHandshake(
+  settings: Awaited<ReturnType<typeof readBridgeSettings>>,
+): Promise<HandshakePayload> {
+  const response = await fetch(buildHandshakeUrl(settings));
   if (!response.ok) {
     throw new Error(`Handshake failed with status ${response.status}`);
   }
 
   return response.json() as Promise<HandshakePayload>;
-}
-
-async function readBridgeEnabled(): Promise<boolean> {
-  return new Promise<boolean>((resolve) => {
-    chrome.storage.local.get(["bridgeEnabled"], (values) => {
-      resolve(values.bridgeEnabled !== false);
-    });
-  });
 }
 
 function detectPageContext(): PageContextPayload {

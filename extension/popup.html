@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ChatGPT Bridge</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 12px; min-width: 320px; }
+    h1 { font-size: 16px; margin: 0 0 10px; }
+    .row { margin: 8px 0; }
+    .label { font-weight: 600; display: block; margin-bottom: 2px; }
+    .value { word-break: break-word; color: #222; }
+    .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    button { padding: 6px 10px; }
+  </style>
+</head>
+<body>
+  <h1>ChatGPT Bridge</h1>
+  <label class="row">
+    <input id="bridge-enabled" type="checkbox">
+    Enable bridge
+  </label>
+  <div class="row"><span class="label">Status</span><span id="status" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Handshake URL</span><span id="handshake-url" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Extension Version</span><span id="extension-version" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Server Version</span><span id="server-version" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Expected Extension Version</span><span id="expected-extension-version" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Open ChatGPT Tabs</span><span id="open-tab-count" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Last Connected</span><span id="last-connected-at" class="value">Loading...</span></div>
+  <div class="row"><span class="label">Last Error</span><span id="last-error" class="value">Loading...</span></div>
+  <div class="actions">
+    <button id="refresh-connection" type="button">Refresh</button>
+    <button id="open-chatgpt" type="button">Open ChatGPT</button>
+    <button id="open-options" type="button">Settings</button>
+  </div>
+  <script type="module" src="dist/popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ChatGPT Bridge Settings</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; max-width: 720px; }
+    h1 { margin-bottom: 16px; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input { width: 100%; max-width: 360px; padding: 8px; }
+    .meta { margin-top: 20px; }
+    .meta-row { margin: 8px 0; }
+    .actions { display: flex; gap: 8px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>ChatGPT Bridge Settings</h1>
+  <label for="bridge-host">Bridge Host</label>
+  <input id="bridge-host" type="text">
+  <label for="bridge-port">Bridge Port</label>
+  <input id="bridge-port" type="number" min="1" max="65535">
+  <div class="actions">
+    <button id="save-settings" type="button">Save</button>
+    <button id="reset-defaults" type="button">Reset Defaults</button>
+  </div>
+  <div id="save-status" class="meta-row"></div>
+  <div class="meta">
+    <div class="meta-row"><strong>Extension Version:</strong> <span id="extension-version">Loading...</span></div>
+    <div class="meta-row"><strong>Server Version:</strong> <span id="server-version">Loading...</span></div>
+    <div class="meta-row"><strong>Last Error:</strong> <span id="last-error">Loading...</span></div>
+  </div>
+  <script type="module" src="dist/options.js"></script>
+</body>
+</html>

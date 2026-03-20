@@ -120,6 +120,7 @@ export interface GenerationWorkflowResult {
 
 export interface RuntimePaths {
   cwd: string;
+  runtimeHome: string;
   artifactRoot: string;
 }
 

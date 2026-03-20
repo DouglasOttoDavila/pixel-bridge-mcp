@@ -18,6 +18,7 @@ import {
 } from "./protocol.js";
 import { ExtensionSessionRegistry } from "./sessionRegistry.js";
 import type { PendingCommand, RegisteredExtensionSession } from "./types.js";
+import { areVersionsCompatible, getPackageVersion } from "../utils/version.js";
 
 export class ExtensionBridgeServer {
   private httpServer?: HttpServer;
@@ -26,6 +27,7 @@ export class ExtensionBridgeServer {
   private readonly pendingCommands = new Map<string, PendingCommand>();
   private backgroundSocket?: WebSocket;
   private backgroundSessionId?: string;
+  private readonly serverVersion = getPackageVersion();
 
   public constructor(
     private readonly config: AppConfig,
@@ -43,6 +45,8 @@ export class ExtensionBridgeServer {
           protocolVersion: BRIDGE_PROTOCOL_VERSION,
           wsUrl: `ws://${this.config.extensionBridge.host}:${this.config.extensionBridge.port}/ws`,
           token: this.token,
+          serverVersion: this.serverVersion,
+          expectedExtensionVersion: this.serverVersion,
         };
         response.writeHead(200, {
           "content-type": "application/json",
@@ -81,6 +85,11 @@ export class ExtensionBridgeServer {
               return;
             }
 
+            if (!areVersionsCompatible(this.serverVersion, parsed.payload.extensionVersion)) {
+              socket.close(4003, "Extension version mismatch");
+              return;
+            }
+
             let tabKey = "background-control";
             if (parsed.payload.clientRole === "background") {
               this.backgroundSocket = socket;
@@ -97,6 +106,8 @@ export class ExtensionBridgeServer {
               type: "hello_ack",
               sessionId,
               tabKey,
+              serverVersion: this.serverVersion,
+              expectedExtensionVersion: this.serverVersion,
             };
             socket.send(JSON.stringify(ack));
             return;
