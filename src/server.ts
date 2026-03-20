@@ -50,7 +50,7 @@ export function createServer(config: AppConfig, extensionBridge: ExtensionBridge
   };
 
   const server = new McpServer({
-    name: "chatgpt-browser-image-generation-mcp-server",
+    name: "pixelbridge-mcp",
     version: "0.1.0",
   });
 

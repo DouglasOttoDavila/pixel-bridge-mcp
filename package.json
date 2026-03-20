@@ -1,7 +1,7 @@
 {
-  "name": "chatgpt-browser-image-generation-mcp-server",
+  "name": "pixelbridge-mcp",
   "version": "0.1.0",
-  "description": "Local MCP server for ChatGPT browser-based image generation workflows.",
+  "description": "Local MCP server and Chrome extension for ChatGPT browser-based image generation workflows.",
   "license": "MIT",
   "author": "Douglas Otto Davila",
   "homepage": "https://github.com/DouglasOttoDavila/image-generation-mcp-server#readme",
@@ -13,6 +13,7 @@
     "url": "https://github.com/DouglasOttoDavila/image-generation-mcp-server/issues"
   },
   "keywords": [
+    "pixelbridge",
     "mcp",
     "model-context-protocol",
     "chatgpt",
@@ -22,7 +23,7 @@
   ],
   "type": "module",
   "bin": {
-    "chatgpt-image-mcp": "dist/src/index.js"
+    "pixelbridge-mcp": "dist/src/index.js"
   },
   "files": [
     "dist/src",

@@ -1,6 +1,6 @@
 # Privacy Policy Draft
 
-This draft is tailored to the current behavior of the `ChatGPT Extension Bridge` Chrome extension and the companion local MCP server.
+This draft is tailored to the current behavior of the `PixelBridge MCP` Chrome extension and the companion local MCP server.
 
 Before publishing, replace placeholders with your real legal name, contact address, support URL, and effective date, then host the final policy at a stable public URL.
 
@@ -12,8 +12,8 @@ Before publishing, replace placeholders with your real legal name, contact addre
 
 This policy applies to:
 
-- the Chrome extension `ChatGPT Extension Bridge`
-- the companion local npm package `chatgpt-browser-image-generation-mcp-server`
+- the Chrome extension `PixelBridge MCP`
+- the companion local npm package `pixelbridge-mcp`
 
 ## Summary
 

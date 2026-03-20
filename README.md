@@ -1,10 +1,10 @@
-# ChatGPT Browser Image Generation MCP Server
+# PixelBridge MCP
 
-Local TypeScript MCP server that orchestrates ChatGPT image generation from the user's real browser tab through a Chrome extension bridge, persists artifacts under `artifacts/generated-images/chatgpt/`, and returns MCP-friendly structured results.
+PixelBridge MCP is a local TypeScript MCP server and Chrome extension bundle that orchestrates ChatGPT image generation from the user's real browser tab, persists artifacts under `artifacts/generated-images/chatgpt/`, and returns MCP-friendly structured results.
 
 License: `MIT`. See [LICENSE](./LICENSE).
 
-For productization, the intended install target is now a local npm-installed CLI. The executable name is `chatgpt-image-mcp`.
+For productization, the intended install target is now a local npm-installed CLI. The executable name is `pixelbridge-mcp`.
 
 End-user installation docs:
 - [Installing The CLI](./docs/installing-the-cli.md)
@@ -76,8 +76,8 @@ npm install
 2. Set environment variables:
 
 ```powershell
-$env:CHATGPT_EXTENSION_BRIDGE_HOST="127.0.0.1"
-$env:CHATGPT_EXTENSION_BRIDGE_PORT="47821"
+$env:PIXELBRIDGE_EXTENSION_BRIDGE_HOST="127.0.0.1"
+$env:PIXELBRIDGE_EXTENSION_BRIDGE_PORT="47821"
 ```
 
 You can also place the same values in a local `.env` file. The server auto-loads `.env` on startup and accepts either standard dotenv lines or PowerShell-style `$env:` lines.
@@ -86,23 +86,25 @@ A safe starter file is included at [.env.example](./.env.example).
 
 Optional variables:
 
-- `CHATGPT_RUNTIME_HOME`
-- `CHATGPT_EXTENSION_BRIDGE_PORT`
-- `CHATGPT_EXTENSION_BRIDGE_HOST`
-- `CHATGPT_ARTIFACT_ROOT`
-- `CHATGPT_RETURN_MODE` with `paths` or `base64`
-- `CHATGPT_DEFAULT_TIMEOUT_MS`
-- `CHATGPT_MAX_TIMEOUT_MS`
-- `CHATGPT_RETRY_ATTEMPTS`
-- `CHATGPT_RETRY_BASE_DELAY_MS`
+- `PIXELBRIDGE_RUNTIME_HOME`
+- `PIXELBRIDGE_EXTENSION_BRIDGE_PORT`
+- `PIXELBRIDGE_EXTENSION_BRIDGE_HOST`
+- `PIXELBRIDGE_ARTIFACT_ROOT`
+- `PIXELBRIDGE_RETURN_MODE` with `paths` or `base64`
+- `PIXELBRIDGE_DEFAULT_TIMEOUT_MS`
+- `PIXELBRIDGE_MAX_TIMEOUT_MS`
+- `PIXELBRIDGE_RETRY_ATTEMPTS`
+- `PIXELBRIDGE_RETRY_BASE_DELAY_MS`
+
+Legacy `CHATGPT_*` environment variables are still accepted for backward compatibility.
 
 ## Runtime Home
 
-When `CHATGPT_RUNTIME_HOME` is not set, the server now defaults to an OS app-data directory instead of the repo folder:
+When `PIXELBRIDGE_RUNTIME_HOME` is not set, the server now defaults to an OS app-data directory instead of the repo folder:
 
-- Windows: `%LOCALAPPDATA%\\chatgpt-browser-image-generation-mcp-server`
-- macOS: `~/Library/Application Support/chatgpt-browser-image-generation-mcp-server`
-- Linux: `${XDG_DATA_HOME:-~/.local/share}/chatgpt-browser-image-generation-mcp-server`
+- Windows: `%LOCALAPPDATA%\\pixelbridge-mcp`
+- macOS: `~/Library/Application Support/pixelbridge-mcp`
+- Linux: `${XDG_DATA_HOME:-~/.local/share}/pixelbridge-mcp`
 
 Default artifact output is created under:
 
@@ -161,7 +163,7 @@ npm run start
 For an installed CLI, run:
 
 ```bash
-chatgpt-image-mcp
+pixelbridge-mcp
 ```
 
 For generic MCP client wiring examples, see [MCP Client Configuration](./docs/mcp-client-configuration.md).

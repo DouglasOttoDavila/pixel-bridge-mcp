@@ -13,7 +13,7 @@ Related docs:
 
 The npm package provides:
 
-- the local MCP server executable: `chatgpt-image-mcp`
+- the local MCP server executable: `pixelbridge-mcp`
 - the built Chrome extension runtime under `extension/`
 - the runtime README files needed for setup
 
@@ -30,25 +30,25 @@ The package does not need the test suite or raw extension TypeScript source file
 ### Global install
 
 ```bash
-npm install -g chatgpt-browser-image-generation-mcp-server
+npm install -g pixelbridge-mcp
 ```
 
 Then the MCP server executable is:
 
 ```bash
-chatgpt-image-mcp
+pixelbridge-mcp
 ```
 
 ### Local install in another project
 
 ```bash
-npm install chatgpt-browser-image-generation-mcp-server
+npm install pixelbridge-mcp
 ```
 
 Then the executable can be invoked with:
 
 ```bash
-npx chatgpt-image-mcp
+npx pixelbridge-mcp
 ```
 
 ### Install from a local tarball
@@ -56,16 +56,16 @@ npx chatgpt-image-mcp
 If you built a local package with `npm pack`:
 
 ```bash
-npm install -g ./chatgpt-browser-image-generation-mcp-server-0.1.0.tgz
+npm install -g ./pixelbridge-mcp-0.1.0.tgz
 ```
 
 ## Runtime Home
 
-If `CHATGPT_RUNTIME_HOME` is not set, the server uses an OS app-data location:
+If `PIXELBRIDGE_RUNTIME_HOME` is not set, the server uses an OS app-data location:
 
-- Windows: `%LOCALAPPDATA%\chatgpt-browser-image-generation-mcp-server`
-- macOS: `~/Library/Application Support/chatgpt-browser-image-generation-mcp-server`
-- Linux: `${XDG_DATA_HOME:-~/.local/share}/chatgpt-browser-image-generation-mcp-server`
+- Windows: `%LOCALAPPDATA%\pixelbridge-mcp`
+- macOS: `~/Library/Application Support/pixelbridge-mcp`
+- Linux: `${XDG_DATA_HOME:-~/.local/share}/pixelbridge-mcp`
 
 This runtime home stores:
 
@@ -76,7 +76,7 @@ This runtime home stores:
 To override it:
 
 ```powershell
-$env:CHATGPT_RUNTIME_HOME="D:\MyMcpRuntime\chatgpt-image-mcp"
+$env:PIXELBRIDGE_RUNTIME_HOME="D:\MyMcpRuntime\pixelbridge-mcp"
 ```
 
 ## Install The Chrome Extension
@@ -100,20 +100,20 @@ npm root -g
 Then open:
 
 ```text
-<global-node-modules>/chatgpt-browser-image-generation-mcp-server/extension
+<global-node-modules>/pixelbridge-mcp/extension
 ```
 
 Local npm install in another project:
 
 ```bash
-node -p "require.resolve('chatgpt-browser-image-generation-mcp-server/package.json')"
+node -p "require.resolve('pixelbridge-mcp/package.json')"
 ```
 
 Then open the sibling `extension/` directory next to that `package.json` file.
 
 Install from local tarball:
 
-- use the same lookup commands above after installation, or inspect the target project's `node_modules/chatgpt-browser-image-generation-mcp-server/extension`
+- use the same lookup commands above after installation, or inspect the target project's `node_modules/pixelbridge-mcp/extension`
 
 The extension popup shows:
 
@@ -129,7 +129,7 @@ The extension popup shows:
 1. Start the MCP server once:
 
 ```bash
-chatgpt-image-mcp
+pixelbridge-mcp
 ```
 
 2. Open `https://chatgpt.com`
@@ -140,13 +140,15 @@ chatgpt-image-mcp
 
 Common variables:
 
-- `CHATGPT_RUNTIME_HOME`
-- `CHATGPT_EXTENSION_BRIDGE_HOST`
-- `CHATGPT_EXTENSION_BRIDGE_PORT`
-- `CHATGPT_ARTIFACT_ROOT`
-- `CHATGPT_RETURN_MODE`
-- `CHATGPT_DEFAULT_TIMEOUT_MS`
-- `CHATGPT_MAX_TIMEOUT_MS`
+- `PIXELBRIDGE_RUNTIME_HOME`
+- `PIXELBRIDGE_EXTENSION_BRIDGE_HOST`
+- `PIXELBRIDGE_EXTENSION_BRIDGE_PORT`
+- `PIXELBRIDGE_ARTIFACT_ROOT`
+- `PIXELBRIDGE_RETURN_MODE`
+- `PIXELBRIDGE_DEFAULT_TIMEOUT_MS`
+- `PIXELBRIDGE_MAX_TIMEOUT_MS`
+
+Legacy `CHATGPT_*` environment variables are still supported for existing setups.
 
 You can place these in `.env` either:
 
@@ -187,7 +189,7 @@ Reload the extension, refresh the ChatGPT tab, and retry. If it reproduces, coll
 
 ### Artifact path not where expected
 
-Check `CHATGPT_RUNTIME_HOME` and `CHATGPT_ARTIFACT_ROOT`. By default, artifacts are saved under:
+Check `PIXELBRIDGE_RUNTIME_HOME` and `PIXELBRIDGE_ARTIFACT_ROOT`. By default, artifacts are saved under:
 
 ```text
 <runtime-home>/artifacts/generated-images/chatgpt/YYYY-MM-DD/

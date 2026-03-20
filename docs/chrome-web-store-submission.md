@@ -14,7 +14,7 @@ Use it together with:
 
 Extension name in the manifest:
 
-- `ChatGPT Extension Bridge`
+- `PixelBridge MCP`
 
 Current purpose:
 
@@ -59,7 +59,7 @@ Per Chrome Web Store listing policy, the listing must be accurate, current, and 
 
 ## Draft Full Description
 
-`ChatGPT Extension Bridge links a local MCP server to your existing ChatGPT browser session so local MCP clients can automate image generation workflows from the tab you already use.`
+`PixelBridge MCP links a local MCP server to your existing ChatGPT browser session so local MCP clients can automate image generation workflows from the tab you already use.`
 
 `The extension can detect and connect ChatGPT tabs, keep a local bridge session alive, open a background ChatGPT tab when the server needs one, and expose local diagnostics for troubleshooting. Generated image payloads are sent back to the local MCP server running on your machine so the server can store artifacts and return tool results to the MCP client.`
 

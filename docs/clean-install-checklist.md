@@ -20,7 +20,7 @@ Confirm:
 
 Recommended cleanup before testing:
 
-- remove any older global install of `chatgpt-browser-image-generation-mcp-server`
+- remove any older global install of `pixelbridge-mcp`
 - close old ChatGPT tabs
 - remove old unpacked copies of the extension from `chrome://extensions`
 
@@ -31,19 +31,19 @@ Pick one install path:
 Global install:
 
 ```bash
-npm install -g chatgpt-browser-image-generation-mcp-server
+npm install -g pixelbridge-mcp
 ```
 
 Tarball install:
 
 ```bash
-npm install -g ./chatgpt-browser-image-generation-mcp-server-0.1.0.tgz
+npm install -g ./pixelbridge-mcp-0.1.0.tgz
 ```
 
 Verify:
 
 ```bash
-chatgpt-image-mcp --help
+pixelbridge-mcp --help
 ```
 
 If the CLI does not expose a help screen, at least verify the command resolves:
@@ -51,13 +51,13 @@ If the CLI does not expose a help screen, at least verify the command resolves:
 Windows:
 
 ```powershell
-Get-Command chatgpt-image-mcp
+Get-Command pixelbridge-mcp
 ```
 
 macOS/Linux:
 
 ```bash
-which chatgpt-image-mcp
+which pixelbridge-mcp
 ```
 
 ## 3. Locate The Packaged Extension
@@ -71,13 +71,13 @@ npm root -g
 Then open:
 
 ```text
-<global-node-modules>/chatgpt-browser-image-generation-mcp-server/extension
+<global-node-modules>/pixelbridge-mcp/extension
 ```
 
 Alternative lookup:
 
 ```bash
-node -p "require.resolve('chatgpt-browser-image-generation-mcp-server/package.json')"
+node -p "require.resolve('pixelbridge-mcp/package.json')"
 ```
 
 Then open the sibling `extension/` directory.
@@ -100,10 +100,10 @@ Verify in the extension details:
 In a terminal:
 
 ```bash
-chatgpt-image-mcp
+pixelbridge-mcp
 ```
 
-If you want a custom runtime home, set `CHATGPT_RUNTIME_HOME` first.
+If you want a custom runtime home, set `PIXELBRIDGE_RUNTIME_HOME` first.
 
 ## 6. Connect ChatGPT
 

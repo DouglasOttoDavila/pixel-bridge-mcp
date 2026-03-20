@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ChatGPT Extension Bridge",
+  "name": "PixelBridge MCP",
   "version": "0.1.0",
-  "description": "Bridges the local MCP server to an already-open ChatGPT tab.",
+  "description": "Connects the local PixelBridge MCP server to an already-open ChatGPT tab.",
   "minimum_chrome_version": "116",
   "permissions": ["storage", "tabs"],
   "host_permissions": [

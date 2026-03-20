@@ -19,9 +19,9 @@ export async function runConfigTests(): Promise<void> {
       const cwd = await createTempDir();
       const config = loadConfig(
         {
-          CHATGPT_BROWSER_HEADLESS: "true",
-          CHATGPT_AUTOMATION_PROFILE_PATH: "Profile 16",
-          CHATGPT_CHROME_EXECUTABLE_PATH: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+          PIXELBRIDGE_BROWSER_HEADLESS: "true",
+          PIXELBRIDGE_AUTOMATION_PROFILE_PATH: "Profile 16",
+          PIXELBRIDGE_CHROME_EXECUTABLE_PATH: "C:/Program Files/Google/Chrome/Application/chrome.exe",
         },
         cwd,
       );
@@ -63,8 +63,8 @@ export async function runConfigTests(): Promise<void> {
       const cwd = await createTempDir();
       const config = loadConfig(
         {
-          CHATGPT_CLONE_PROFILE: "false",
-          CHATGPT_EXTENSION_BRIDGE_PORT: "49000",
+          PIXELBRIDGE_CLONE_PROFILE: "false",
+          PIXELBRIDGE_EXTENSION_BRIDGE_PORT: "49000",
         },
         cwd,
       );
@@ -77,15 +77,15 @@ export async function runConfigTests(): Promise<void> {
       const cwd = await createTempDir();
       const config = loadConfig(
         {
-          CHATGPT_RUNTIME_HOME: ".chatgpt-image-mcp-runtime",
+          PIXELBRIDGE_RUNTIME_HOME: ".pixelbridge-mcp-runtime",
         },
         cwd,
       );
 
-      assert.equal(config.paths.runtimeHome, path.join(cwd, ".chatgpt-image-mcp-runtime"));
+      assert.equal(config.paths.runtimeHome, path.join(cwd, ".pixelbridge-mcp-runtime"));
       assert.equal(
         config.paths.artifactRoot,
-        path.join(cwd, ".chatgpt-image-mcp-runtime", "artifacts", "generated-images", "chatgpt"),
+        path.join(cwd, ".pixelbridge-mcp-runtime", "artifacts", "generated-images", "chatgpt"),
       );
     }
 
@@ -93,8 +93,8 @@ export async function runConfigTests(): Promise<void> {
       const cwd = await createTempDir();
       assert.throws(() =>
         loadConfig(
-          {
-            CHATGPT_DEFAULT_TIMEOUT_MS: "abc",
+            {
+            PIXELBRIDGE_DEFAULT_TIMEOUT_MS: "abc",
           },
           cwd,
         ),
@@ -105,8 +105,8 @@ export async function runConfigTests(): Promise<void> {
       const cwd = await createTempDir();
       assert.throws(() =>
         loadConfig(
-          {
-            CHATGPT_CHROME_PROFILE_DIRECTORY: "Profile 16",
+            {
+            PIXELBRIDGE_CHROME_PROFILE_DIRECTORY: "Profile 16",
           },
           cwd,
         ),

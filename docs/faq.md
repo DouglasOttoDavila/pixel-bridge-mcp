@@ -52,7 +52,7 @@ By default:
 <runtime-home>/artifacts/generated-images/chatgpt/YYYY-MM-DD/
 ```
 
-The runtime home defaults to an OS app-data location unless `CHATGPT_RUNTIME_HOME` is set.
+The runtime home defaults to an OS app-data location unless `PIXELBRIDGE_RUNTIME_HOME` is set.
 
 ## Why does the extension popup show version mismatch?
 

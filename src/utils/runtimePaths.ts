@@ -1,13 +1,13 @@
 import os from "node:os";
 import path from "node:path";
 
-const APP_DIRECTORY_NAME = "chatgpt-browser-image-generation-mcp-server";
+const APP_DIRECTORY_NAME = "pixelbridge-mcp";
 
 export function resolveRuntimeHome(
   env: NodeJS.ProcessEnv = process.env,
   cwd = process.cwd(),
 ): string {
-  const explicitRuntimeHome = env.CHATGPT_RUNTIME_HOME?.trim();
+  const explicitRuntimeHome = env.PIXELBRIDGE_RUNTIME_HOME?.trim() || env.CHATGPT_RUNTIME_HOME?.trim();
   if (explicitRuntimeHome) {
     return path.isAbsolute(explicitRuntimeHome)
       ? explicitRuntimeHome

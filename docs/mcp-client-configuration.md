@@ -26,25 +26,27 @@ The examples below assume one of these install paths:
 Global npm install:
 
 ```text
-command: chatgpt-image-mcp
+command: pixelbridge-mcp
 ```
 
 Project-local install:
 
 ```text
 command: npx
-args: ["chatgpt-image-mcp"]
+args: ["pixelbridge-mcp"]
 ```
 
 Optional environment block:
 
 ```json
 {
-  "CHATGPT_RUNTIME_HOME": "D:\\ChatGPTImageMcp",
-  "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-  "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+  "PIXELBRIDGE_RUNTIME_HOME": "D:\\PixelBridgeMcp",
+  "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+  "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
 }
 ```
+
+Legacy `CHATGPT_*` environment variables are still accepted, but new configs should use `PIXELBRIDGE_*`.
 
 ## VS Code And GitHub Copilot In VS Code
 
@@ -58,12 +60,12 @@ Workspace config:
 ```json
 {
   "servers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -99,12 +101,12 @@ Project-local config:
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -138,12 +140,12 @@ Example:
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -169,12 +171,12 @@ Recommended path:
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -199,13 +201,13 @@ OpenAI Codex supports MCP servers in `~/.codex/config.toml` or project-local `.c
 Add this block:
 
 ```toml
-[mcp_servers.chatgpt-image-mcp]
-command = "chatgpt-image-mcp"
+[mcp_servers.pixelbridge-mcp]
+command = "pixelbridge-mcp"
 args = []
 
-[mcp_servers.chatgpt-image-mcp.env]
-CHATGPT_EXTENSION_BRIDGE_HOST = "127.0.0.1"
-CHATGPT_EXTENSION_BRIDGE_PORT = "47821"
+[mcp_servers.pixelbridge-mcp.env]
+PIXELBRIDGE_EXTENSION_BRIDGE_HOST = "127.0.0.1"
+PIXELBRIDGE_EXTENSION_BRIDGE_PORT = "47821"
 ```
 
 Then restart Codex.
@@ -233,13 +235,13 @@ Claude Code has first-class MCP support and documents `claude mcp add`, `claude 
 Recommended command:
 
 ```bash
-claude mcp add-json chatgpt-image-mcp "{\"type\":\"stdio\",\"command\":\"chatgpt-image-mcp\",\"args\":[],\"env\":{\"CHATGPT_EXTENSION_BRIDGE_HOST\":\"127.0.0.1\",\"CHATGPT_EXTENSION_BRIDGE_PORT\":\"47821\"}}" --scope user
+claude mcp add-json pixelbridge-mcp "{\"type\":\"stdio\",\"command\":\"pixelbridge-mcp\",\"args\":[],\"env\":{\"PIXELBRIDGE_EXTENSION_BRIDGE_HOST\":\"127.0.0.1\",\"PIXELBRIDGE_EXTENSION_BRIDGE_PORT\":\"47821\"}}" --scope user
 ```
 
 Then verify:
 
 ```bash
-claude mcp get chatgpt-image-mcp
+claude mcp get pixelbridge-mcp
 claude mcp list
 ```
 
@@ -280,13 +282,13 @@ Recommended path:
 3. Enter the local stdio server command:
 
 ```text
-chatgpt-image-mcp
+pixelbridge-mcp
 ```
 
 If the command is not globally installed, use:
 
 ```text
-npx chatgpt-image-mcp
+npx pixelbridge-mcp
 ```
 
 Then save the MCP entry and restart the session if needed.
@@ -316,12 +318,12 @@ Shape A:
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -333,12 +335,12 @@ Shape B:
 ```json
 {
   "servers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -382,7 +384,7 @@ Switch to the project-local form:
 
 ```text
 command: npx
-args: ["chatgpt-image-mcp"]
+args: ["pixelbridge-mcp"]
 ```
 
 ## Sources

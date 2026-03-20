@@ -1,4 +1,4 @@
-# ChatGPT Extension Bridge
+# PixelBridge MCP Extension
 
 This Chrome extension connects ChatGPT tabs plus a background control worker to the local MCP server.
 

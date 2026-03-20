@@ -6,7 +6,7 @@ This checklist is for producing a release of the local npm CLI plus the matching
 
 Ship a versioned pair:
 
-- npm package: `chatgpt-browser-image-generation-mcp-server`
+- npm package: `pixelbridge-mcp`
 - downloadable Chrome extension bundle from `extension/`
 
 Both artifacts should be built from the same repo state and version.

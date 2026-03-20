@@ -8,8 +8,8 @@ Use it together with [mcp-client-configuration.md](./mcp-client-configuration.md
 
 Server command:
 
-- global install: `chatgpt-image-mcp`
-- local install fallback: `npx chatgpt-image-mcp`
+- global install: `pixelbridge-mcp`
+- local install fallback: `npx pixelbridge-mcp`
 
 Bridge defaults:
 
@@ -23,13 +23,13 @@ Bridge defaults:
 ```json
 {
   "servers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "D:\\ChatGPTImageMcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "D:\\PixelBridgeMcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -41,13 +41,13 @@ Bridge defaults:
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "D:\\ChatGPTImageMcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "D:\\PixelBridgeMcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -57,20 +57,20 @@ Bridge defaults:
 ### Codex `~/.codex/config.toml`
 
 ```toml
-[mcp_servers.chatgpt-image-mcp]
-command = "chatgpt-image-mcp"
+[mcp_servers.pixelbridge-mcp]
+command = "pixelbridge-mcp"
 args = []
 
-[mcp_servers.chatgpt-image-mcp.env]
-CHATGPT_RUNTIME_HOME = "D:\\ChatGPTImageMcp"
-CHATGPT_EXTENSION_BRIDGE_HOST = "127.0.0.1"
-CHATGPT_EXTENSION_BRIDGE_PORT = "47821"
+[mcp_servers.pixelbridge-mcp.env]
+PIXELBRIDGE_RUNTIME_HOME = "D:\\PixelBridgeMcp"
+PIXELBRIDGE_EXTENSION_BRIDGE_HOST = "127.0.0.1"
+PIXELBRIDGE_EXTENSION_BRIDGE_PORT = "47821"
 ```
 
 ### Claude Code
 
 ```bash
-claude mcp add-json chatgpt-image-mcp "{\"type\":\"stdio\",\"command\":\"chatgpt-image-mcp\",\"args\":[],\"env\":{\"CHATGPT_RUNTIME_HOME\":\"D:\\\\ChatGPTImageMcp\",\"CHATGPT_EXTENSION_BRIDGE_HOST\":\"127.0.0.1\",\"CHATGPT_EXTENSION_BRIDGE_PORT\":\"47821\"}}" --scope user
+claude mcp add-json pixelbridge-mcp "{\"type\":\"stdio\",\"command\":\"pixelbridge-mcp\",\"args\":[],\"env\":{\"PIXELBRIDGE_RUNTIME_HOME\":\"D:\\\\PixelBridgeMcp\",\"PIXELBRIDGE_EXTENSION_BRIDGE_HOST\":\"127.0.0.1\",\"PIXELBRIDGE_EXTENSION_BRIDGE_PORT\":\"47821\"}}" --scope user
 ```
 
 ## macOS
@@ -80,13 +80,13 @@ claude mcp add-json chatgpt-image-mcp "{\"type\":\"stdio\",\"command\":\"chatgpt
 ```json
 {
   "servers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "/Users/your-user/Library/Application Support/chatgpt-image-mcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "/Users/your-user/Library/Application Support/pixelbridge-mcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -98,13 +98,13 @@ claude mcp add-json chatgpt-image-mcp "{\"type\":\"stdio\",\"command\":\"chatgpt
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "/Users/your-user/Library/Application Support/chatgpt-image-mcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "/Users/your-user/Library/Application Support/pixelbridge-mcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -114,20 +114,20 @@ claude mcp add-json chatgpt-image-mcp "{\"type\":\"stdio\",\"command\":\"chatgpt
 ### Codex `~/.codex/config.toml`
 
 ```toml
-[mcp_servers.chatgpt-image-mcp]
-command = "chatgpt-image-mcp"
+[mcp_servers.pixelbridge-mcp]
+command = "pixelbridge-mcp"
 args = []
 
-[mcp_servers.chatgpt-image-mcp.env]
-CHATGPT_RUNTIME_HOME = "/Users/your-user/Library/Application Support/chatgpt-image-mcp"
-CHATGPT_EXTENSION_BRIDGE_HOST = "127.0.0.1"
-CHATGPT_EXTENSION_BRIDGE_PORT = "47821"
+[mcp_servers.pixelbridge-mcp.env]
+PIXELBRIDGE_RUNTIME_HOME = "/Users/your-user/Library/Application Support/pixelbridge-mcp"
+PIXELBRIDGE_EXTENSION_BRIDGE_HOST = "127.0.0.1"
+PIXELBRIDGE_EXTENSION_BRIDGE_PORT = "47821"
 ```
 
 ### Claude Code
 
 ```bash
-claude mcp add-json chatgpt-image-mcp '{"type":"stdio","command":"chatgpt-image-mcp","args":[],"env":{"CHATGPT_RUNTIME_HOME":"/Users/your-user/Library/Application Support/chatgpt-image-mcp","CHATGPT_EXTENSION_BRIDGE_HOST":"127.0.0.1","CHATGPT_EXTENSION_BRIDGE_PORT":"47821"}}' --scope user
+claude mcp add-json pixelbridge-mcp '{"type":"stdio","command":"pixelbridge-mcp","args":[],"env":{"PIXELBRIDGE_RUNTIME_HOME":"/Users/your-user/Library/Application Support/pixelbridge-mcp","PIXELBRIDGE_EXTENSION_BRIDGE_HOST":"127.0.0.1","PIXELBRIDGE_EXTENSION_BRIDGE_PORT":"47821"}}' --scope user
 ```
 
 ## Linux
@@ -137,13 +137,13 @@ claude mcp add-json chatgpt-image-mcp '{"type":"stdio","command":"chatgpt-image-
 ```json
 {
   "servers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "/home/your-user/.local/share/chatgpt-image-mcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "/home/your-user/.local/share/pixelbridge-mcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -155,13 +155,13 @@ claude mcp add-json chatgpt-image-mcp '{"type":"stdio","command":"chatgpt-image-
 ```json
 {
   "mcpServers": {
-    "chatgpt-image-mcp": {
-      "command": "chatgpt-image-mcp",
+    "pixelbridge-mcp": {
+      "command": "pixelbridge-mcp",
       "args": [],
       "env": {
-        "CHATGPT_RUNTIME_HOME": "/home/your-user/.local/share/chatgpt-image-mcp",
-        "CHATGPT_EXTENSION_BRIDGE_HOST": "127.0.0.1",
-        "CHATGPT_EXTENSION_BRIDGE_PORT": "47821"
+        "PIXELBRIDGE_RUNTIME_HOME": "/home/your-user/.local/share/pixelbridge-mcp",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_HOST": "127.0.0.1",
+        "PIXELBRIDGE_EXTENSION_BRIDGE_PORT": "47821"
       }
     }
   }
@@ -171,30 +171,30 @@ claude mcp add-json chatgpt-image-mcp '{"type":"stdio","command":"chatgpt-image-
 ### Codex `~/.codex/config.toml`
 
 ```toml
-[mcp_servers.chatgpt-image-mcp]
-command = "chatgpt-image-mcp"
+[mcp_servers.pixelbridge-mcp]
+command = "pixelbridge-mcp"
 args = []
 
-[mcp_servers.chatgpt-image-mcp.env]
-CHATGPT_RUNTIME_HOME = "/home/your-user/.local/share/chatgpt-image-mcp"
-CHATGPT_EXTENSION_BRIDGE_HOST = "127.0.0.1"
-CHATGPT_EXTENSION_BRIDGE_PORT = "47821"
+[mcp_servers.pixelbridge-mcp.env]
+PIXELBRIDGE_RUNTIME_HOME = "/home/your-user/.local/share/pixelbridge-mcp"
+PIXELBRIDGE_EXTENSION_BRIDGE_HOST = "127.0.0.1"
+PIXELBRIDGE_EXTENSION_BRIDGE_PORT = "47821"
 ```
 
 ### Claude Code
 
 ```bash
-claude mcp add-json chatgpt-image-mcp '{"type":"stdio","command":"chatgpt-image-mcp","args":[],"env":{"CHATGPT_RUNTIME_HOME":"/home/your-user/.local/share/chatgpt-image-mcp","CHATGPT_EXTENSION_BRIDGE_HOST":"127.0.0.1","CHATGPT_EXTENSION_BRIDGE_PORT":"47821"}}' --scope user
+claude mcp add-json pixelbridge-mcp '{"type":"stdio","command":"pixelbridge-mcp","args":[],"env":{"PIXELBRIDGE_RUNTIME_HOME":"/home/your-user/.local/share/pixelbridge-mcp","PIXELBRIDGE_EXTENSION_BRIDGE_HOST":"127.0.0.1","PIXELBRIDGE_EXTENSION_BRIDGE_PORT":"47821"}}' --scope user
 ```
 
 ## Fallback Command Form
 
-If `chatgpt-image-mcp` is not on `PATH`, use:
+If `pixelbridge-mcp` is not on `PATH`, use:
 
 ```json
 {
   "command": "npx",
-  "args": ["chatgpt-image-mcp"]
+  "args": ["pixelbridge-mcp"]
 }
 ```
 
@@ -202,5 +202,5 @@ Or in TOML:
 
 ```toml
 command = "npx"
-args = ["chatgpt-image-mcp"]
+args = ["pixelbridge-mcp"]
 ```
