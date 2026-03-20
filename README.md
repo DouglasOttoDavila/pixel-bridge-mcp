@@ -6,6 +6,22 @@ License: `MIT`. See [LICENSE](./LICENSE).
 
 For productization, the intended install target is now a local npm-installed CLI. The executable name is `pixelbridge-mcp`.
 
+## Quick Install
+
+Install the published CLI:
+
+```bash
+npm install -g pixelbridge-mcp
+```
+
+Then start the server:
+
+```bash
+pixelbridge-mcp
+```
+
+You also need to load the packaged Chrome extension from the installed package's `extension/` directory. For the full install path, see [Installing The CLI](./docs/installing-the-cli.md).
+
 End-user installation docs:
 - [Installing The CLI](./docs/installing-the-cli.md)
 - [MCP Client Configuration](./docs/mcp-client-configuration.md)
