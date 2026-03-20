@@ -1,0 +1,33 @@
+{
+  "name": "chatgpt-browser-image-generation-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local MCP server for ChatGPT browser-based image generation workflows.",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && node ./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "build:extension": "node ./node_modules/typescript/bin/tsc -p extension/tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/src/index.js",
+    "test": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && node ./node_modules/typescript/bin/tsc -p tsconfig.json && node dist/tests/run.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "playwright-core": "^1.55.1",
+    "ws": "^8.18.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.24",
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}
