@@ -2,6 +2,13 @@
 
 This document is for end users who want to install the MCP server as a local CLI instead of running it from the source repository.
 
+Related docs:
+
+- [MCP Client Configuration](./mcp-client-configuration.md)
+- [Client Config Snippets](./client-config-snippets.md)
+- [Clean Install Checklist](./clean-install-checklist.md)
+- [FAQ](./faq.md)
+
 ## What Gets Installed
 
 The npm package provides:

@@ -9,11 +9,31 @@ For productization, the intended install target is now a local npm-installed CLI
 End-user installation docs:
 - [Installing The CLI](./docs/installing-the-cli.md)
 - [MCP Client Configuration](./docs/mcp-client-configuration.md)
+- [Client Config Snippets](./docs/client-config-snippets.md)
+- [Clean Install Checklist](./docs/clean-install-checklist.md)
+- [FAQ](./docs/faq.md)
 - [Release Checklist](./docs/release-checklist.md)
 - [GitHub Release Checklist](./docs/github-release-checklist.md)
 - [Support](./docs/support.md)
 - [Chrome Web Store Submission](./docs/chrome-web-store-submission.md)
 - [Privacy Policy Draft](./docs/privacy-policy.md)
+
+The MCP client guide includes concrete setup examples for:
+
+- VS Code / GitHub Copilot in VS Code
+- Cursor
+- Windsurf
+- JetBrains IDEs
+- OpenAI Codex CLI
+- OpenAI Codex IDE/app surfaces
+- Claude Code
+- generic `stdio` MCP clients
+
+Additional user-facing docs now cover:
+
+- clean-machine installation verification
+- Windows/macOS/Linux config snippets
+- common failure modes and answers
 
 ## Public Links
 
