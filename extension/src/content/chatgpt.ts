@@ -1,6 +1,3 @@
-import { areVersionsCompatible, type HandshakePayload, type HelloAckMessage } from "../shared/protocol.js";
-import { buildHandshakeUrl, readBridgeSettings } from "../shared/settings.js";
-
 const CONTEXT_PUSH_INTERVAL_MS = 10000;
 const COMMAND_RETRY_DELAY_MS = 3000;
 const GENERATION_POLL_INTERVAL_MS = 2000;
@@ -10,6 +7,8 @@ const IMAGE_CONTENT_STABLE_POLLS_REQUIRED = 3;
 const IMAGE_CONTENT_POLL_INTERVAL_MS = 2000;
 const IMAGE_CONTENT_FINALIZATION_GRACE_MS = 10000;
 const BRIDGE_PROTOCOL_VERSION = 1;
+const DEFAULT_BRIDGE_HOST = "127.0.0.1";
+const DEFAULT_BRIDGE_PORT = 47821;
 const PROMPT_SELECTORS = [
   "#prompt-textarea",
   "textarea[placeholder*='Message']",
@@ -34,6 +33,20 @@ const GPT_HEADER_SELECTORS = [
 ];
 
 type PageType = "chat" | "gpt" | "login" | "challenge" | "unknown";
+
+interface BridgeSettings {
+  bridgeEnabled: boolean;
+  bridgeHost: string;
+  bridgePort: number;
+}
+
+interface HandshakePayload {
+  protocolVersion: number;
+  wsUrl: string;
+  token: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
+}
 
 interface PageContextPayload {
   tabUrl: string;
@@ -62,6 +75,14 @@ interface ServerCommand {
   commandId: string;
   action: "validate_session" | "generate_image";
   payload: Record<string, unknown>;
+}
+
+interface HelloAckMessage {
+  type: "hello_ack";
+  sessionId: string;
+  tabKey: string;
+  serverVersion: string;
+  expectedExtensionVersion: string;
 }
 
 interface ResultMessage {
@@ -893,6 +914,35 @@ function isVisible(element: Element | null): boolean {
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => {
     window.setTimeout(resolve, ms);
+  });
+}
+
+// Keep runtime bridge helpers local so the emitted content script stays import-free.
+function areVersionsCompatible(expected: string | undefined, actual: string | undefined): boolean {
+  if (!expected || !actual) {
+    return true;
+  }
+
+  return expected.trim() === actual.trim();
+}
+
+function buildHandshakeUrl(settings: Pick<BridgeSettings, "bridgeHost" | "bridgePort">): string {
+  return `http://${settings.bridgeHost}:${settings.bridgePort}/handshake`;
+}
+
+async function readBridgeSettings(): Promise<BridgeSettings> {
+  return new Promise<BridgeSettings>((resolve) => {
+    chrome.storage.local.get(["bridgeEnabled", "bridgeHost", "bridgePort"], (values) => {
+      resolve({
+        bridgeEnabled: values.bridgeEnabled !== false,
+        bridgeHost: typeof values.bridgeHost === "string" && values.bridgeHost.trim()
+          ? values.bridgeHost.trim()
+          : DEFAULT_BRIDGE_HOST,
+        bridgePort: typeof values.bridgePort === "number" && Number.isFinite(values.bridgePort)
+          ? values.bridgePort
+          : DEFAULT_BRIDGE_PORT,
+      });
+    });
   });
 }
 
